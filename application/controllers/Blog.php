@@ -29,6 +29,8 @@ class Blog extends CI_Controller
     public function submit()
     {
         $result = $this->mb->submit();
+        $this->do_upload();
+
         if ($result) {
             $this->session->set_flashdata('sukses', 'data berhasil disimpan');
         } else {
@@ -64,6 +66,24 @@ class Blog extends CI_Controller
             $this->session->set_flashdata('gagal', 'data gagal di dihapus');
         }
         redirect(base_url('blog/index'));
+    }
+    public function do_upload()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 10000;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('image')) {
+            $error = array('error' => $this->upload->display_errors());
+
+            $this->load->view('blog/add', $error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+        }
     }
 
 }

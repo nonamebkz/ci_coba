@@ -17,13 +17,17 @@ class Model_blog extends CI_Model
 
     public function submit()
     {
+        
         $field = array(
             'nama' => $this->input->post('txt_nama'),
-            'alamat' => $this->input->post('txt_alamat')
+            'alamat' => $this->input->post('txt_alamat'),
+            'picture' => $this->input->post('image')
         );
+        echo $field;
+        die();
         $this->db->insert('data', $field);
         if ($this->db->affected_rows() > 0) {
-            return true;
+                 return true;
         } else {
             return false;
         }

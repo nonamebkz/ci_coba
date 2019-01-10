@@ -22,7 +22,7 @@ if ($this->session->flashdata('sukses')) {
         <tr>
         <td><?php echo $data->id; ?></td>
         <td><?php echo $data->nama; ?></td>
-        <td><?php echo $data->alamat; ?></td>
+        <td><?php echo $data->picture; ?></td>
         <td>
         <a href="<?php echo base_url('blog/edit/' . $data->id); ?>" class="btn btn-primary">Edit</a>
         <a href="<?php echo base_url('blog/delete/' . $data->id); ?>" class="btn btn-danger" onclick="return confirm('apakah anda yakin akan menghapus data ini?')">hapus</a>
